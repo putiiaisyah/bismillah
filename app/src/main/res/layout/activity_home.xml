@@ -55,11 +55,13 @@
                             android:layout_marginEnd="8dp"
                             android:contentDescription="Ikon keranjang belanja"/>
 
-                        <ImageView
+                        <ImageButton
                             android:id="@+id/iconProfile"
-                            android:layout_width="35dp"
-                            android:layout_height="35dp"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:background="@android:color/transparent"
                             android:src="@drawable/user"
+                            android:contentDescription="profile"
                             android:layout_marginEnd="15dp"/>
 
                     </LinearLayout>

@@ -1,6 +1,9 @@
 package com.example.bismillah;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -11,6 +14,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class home extends AppCompatActivity {
     private TextView tvhellouser;
+    private ImageButton profile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +28,16 @@ public class home extends AppCompatActivity {
         if (fullname !=null) {
             tvhellouser.setText("Hallo, "+ fullname + "!");
         }
+
+        profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(home.this, com.example.bismillah.profile.class);
+                startActivity(intent);
+            }
+        });
+
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
