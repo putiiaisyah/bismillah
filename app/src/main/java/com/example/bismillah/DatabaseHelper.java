@@ -59,4 +59,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
         return count > 0; // Mengembalikan true jika pengguna ditemukan
     }
+
+    public String getUserFullName(String username, String password) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String fullname = null;
+
+        Cursor cursor = db.rawQuery("SELECT fullname FROM users WHERE username = ? AND password = ?", new String[]{username, password});
+        if (cursor.moveToFirst()) {
+            fullname = cursor.getString(cursor.getColumnIndexOrThrow("fullname"));
+        }
+        cursor.close();
+        return fullname;
+
+    }
 }
+

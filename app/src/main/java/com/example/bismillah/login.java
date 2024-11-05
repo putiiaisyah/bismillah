@@ -43,11 +43,18 @@ public class login extends AppCompatActivity {
                 if (username.isEmpty() || password.isEmpty()) {
                     Toast.makeText(login.this, "Username dan password tidak boleh kosong!", Toast.LENGTH_SHORT).show();
                 } else {
-                    // Cek apakah username dan password cocok di database
                     boolean isUserExist = databaseHelper.checkUser(username, password);
                     if (isUserExist) {
+                        // Ambil nama lengkap pengguna dari database
+                        String fullName = databaseHelper.getUserFullName(username, password);
+
                         Toast.makeText(login.this, "Login Berhasil", Toast.LENGTH_SHORT).show();
-                        // Pindah ke halaman utama atau aktivitas lainnya
+
+                        // Pindah ke halaman utama (home) dan kirim nama lengkap
+                        Intent intent = new Intent(login.this, home.class);
+                        intent.putExtra("fullName", fullName); // Kirim nama lengkap
+                        startActivity(intent);
+                        finish();
                     } else {
                         Toast.makeText(login.this, "Username atau password salah!", Toast.LENGTH_SHORT).show();
                     }
@@ -60,7 +67,6 @@ public class login extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(login.this, signUp.class);
                 startActivity(intent);
-                finish();
             }
         });
 
